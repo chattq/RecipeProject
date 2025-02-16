@@ -1,0 +1,274 @@
+@import "tailwindcss";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+#root {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  .mobile {
+    margin-top: 30px;
+    .mobile_content {
+      padding: 0 10px;
+    }
+    .mobile_breadcrumb {
+      display: none;
+    }
+    .mobile_image {
+      height: 300px;
+    }
+  }
+  .header_logo {
+    width: 30px;
+  }
+  .header_avt {
+    width: 35px;
+  }
+  .header_search {
+    width: 60% !important;
+    margin-left: 35px;
+  }
+
+  .mobile_home {
+    width: auto;
+    .mobile_home_layout_product {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 15px;
+      row-gap: 15px;
+      padding: 0 10px;
+
+      .product_infor_user {
+        display: none;
+      }
+      .product_image {
+        height: 130px;
+      }
+    }
+    .layout_product_title {
+      font-size: 16px;
+      line-height: 15px;
+      padding: 0;
+      text-wrap: wrap;
+      width: 220px;
+    }
+    .layout_product_content {
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10px 15px 10px;
+    }
+    .product_card_infor {
+      flex-wrap: wrap;
+    }
+  }
+  .category_card_wapper {
+    width: max-content;
+  }
+  .mobile_home_categories {
+    display: flex;
+    overflow-x: scroll;
+    padding: 0 15px;
+  }
+  .mobile_home_contaier {
+    padding-top: 25px;
+  }
+  .recipe_result {
+    display: none;
+  }
+  .recipe_filter {
+    display: none;
+  }
+  .recipe_layout_product {
+    margin-top: 15px;
+  }
+  .layout-checkbox-filter {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .ant-drawer {
+    display: block;
+  }
+}
+/* Tablet styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tablet {
+    width: calc(100%);
+    margin-top: 30px;
+    /* trang detail */
+    .tablet_content {
+      padding: 0 20px;
+    }
+    .tablet_breadcrumb {
+      display: none;
+    }
+
+    /* trang home */
+    .tablet_home_contaier {
+      padding-top: 10px;
+    }
+    .tablet_home_content {
+      padding: 0 30px;
+    }
+  }
+  .tablet_recipe {
+    width: calc(100%);
+  }
+  .recipe_result {
+    display: none;
+  }
+  .recipe_filter {
+    display: none;
+  }
+  .recipe_layout_product_container {
+    padding: 0 25px 25px 25px;
+  }
+  .layout-checkbox-filter {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tablet_home_layout_product {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 25px;
+    row-gap: 25px;
+  }
+  .header_logo {
+    width: 40px;
+    margin-left: 20px;
+  }
+  .header_avt {
+    width: 35px;
+    margin-right: 20px;
+  }
+  .header_search {
+    width: 70% !important;
+    margin-left: 35px;
+  }
+  .ant-drawer {
+    display: block;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .desktop {
+    width: calc(100% - 100px * 2);
+  }
+  .recipe_result {
+    display: block;
+  }
+  .recipe_filter {
+    display: block;
+  }
+  .recipe_filter_responsive {
+    display: none;
+  }
+  .recipe_layout_product_container {
+    padding: 0;
+  }
+  .recipe_layout {
+    padding-top: 15px;
+  }
+  .reciper_drawer_filter {
+    display: none;
+  }
+}
+/* Laptop trung bình (15.6") */
+@media (min-width: 1281px) {
+  .laptop {
+    width: calc(100% - 340px * 2);
+  }
+  .laptop_home {
+    width: calc(100% - 240px * 2);
+  }
+  .laptop_home_layout_product {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 30px;
+    row-gap: 30px;
+  }
+  .header_logo {
+    width: 40px;
+    margin-left: 20px;
+  }
+  .header_avt {
+    width: 35px;
+    margin-right: 20px;
+  }
+  .header_search {
+    width: 35% !important;
+  }
+  .recipe_result {
+    display: block;
+  }
+  .recipe_filter {
+    display: block;
+  }
+  .recipe_filter_responsive {
+    display: none;
+  }
+  .recipe_layout_product_container {
+    padding: 0;
+  }
+  .recipe_layout {
+    padding-top: 15px;
+  }
+
+  .ant-drawer {
+    display: none;
+  }
+}
+
+/* Laptop trung bình (15.6") */
+@media (min-width: 1024px) and (max-width: 1286px) {
+  .laptop {
+    width: calc(80%);
+  }
+  .laptop_home_cus {
+    width: 95%;
+  }
+  .laptop_home_layout_product {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 30px;
+    row-gap: 30px;
+  }
+  .header_logo {
+    width: 40px;
+    margin-left: 20px;
+  }
+  .header_avt {
+    width: 35px;
+    margin-right: 20px;
+  }
+  .header_search {
+    width: 35% !important;
+  }
+  .recipe_result {
+    display: block;
+  }
+  .recipe_filter {
+    display: block;
+  }
+  .recipe_filter_responsive {
+    display: none;
+  }
+  .recipe_layout_product_container {
+    padding: 0;
+  }
+  .recipe_layout {
+    padding-top: 15px;
+  }
+
+  .ant-drawer {
+    display: none;
+  }
+}
