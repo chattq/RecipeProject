@@ -6,7 +6,6 @@ import { removeVietnameseTones } from "../../utils/removeVietnameseTones";
 export default function DebouncedSearch() {
   const nav = useNavigate();
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
 
   const [options, setOptions] = useState([
     { value: "Sữa chua" },
@@ -63,10 +62,7 @@ export default function DebouncedSearch() {
         }
         setSearchTerm(event.currentTarget.value);
         if (event.currentTarget.value) {
-          queryParams.set("q", event.currentTarget.value); // Cập nhật giá trị `q`
-          queryParams.set("tab", "1");
-          // Điều hướng với query params mới
-          nav(`/results?${queryParams.toString()}`);
+          nav(`/results?q=${event.currentTarget.value}&tab=1`);
         }
       }
     },
@@ -76,10 +72,7 @@ export default function DebouncedSearch() {
   const handleSelect = useCallback(
     (value: string) => {
       setSearchTerm(value);
-      queryParams.set("q", value); // Cập nhật giá trị `q`
-      queryParams.set("tab", "1");
-      // Điều hướng với query params mới
-      nav(`/results?${queryParams.toString()}`);
+      nav(`/results?q=${value}&tab=1`);
     },
     [nav]
   );
@@ -94,8 +87,7 @@ export default function DebouncedSearch() {
     <AutoComplete
       popupClassName="certain-category-search-dropdown"
       className="header_search"
-      style={{ width: "35%", marginTop: "3px" }}
-      size="large"
+      style={{ width: "35%", marginTop: "-5px" }}
       onSearch={handleSearch}
       onSelect={handleSelect}
       options={options}

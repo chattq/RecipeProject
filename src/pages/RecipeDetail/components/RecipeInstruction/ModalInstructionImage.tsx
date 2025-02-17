@@ -22,9 +22,12 @@ export const ModalInstructionImage = forwardRef<ModalInstructionImageRef, {}>(
 
     useImperativeHandle(ref, () => ({
       showModal: (index, data) => {
+        setTimeout(() => {
+          setListImage(data);
+          slickRef.current?.slickGoTo(index);
+        }, 0);
+
         setIsModalOpen(true);
-        setListImage(data);
-        slickRef.current?.slickGoTo(index);
       },
     }));
 
@@ -55,7 +58,7 @@ export const ModalInstructionImage = forwardRef<ModalInstructionImageRef, {}>(
                     <img
                       src={item.instruction_image_image}
                       alt={item.instruction_image_image}
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                 );

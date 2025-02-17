@@ -3,6 +3,8 @@ import React, { forwardRef, useImperativeHandle, useState } from "react";
 
 import { ListCheckBox } from "./RecipeFilter";
 import { LayoutCheckBoxFilter } from "./LayoutCheckBoxFilter";
+import { useSetAtom } from "jotai";
+import { applyChangesAtom } from "../store";
 
 export interface DrawerReciperFilterRef {
   showDrawer: () => void;
@@ -17,12 +19,14 @@ interface DrawerReciperFilterProps {
     listCheckBox: ListCheckBox[];
     keyParam: string;
   }[];
+  onFilter?: () => void;
 }
 export const DrawerReciperFilter = forwardRef<
   DrawerReciperFilterRef,
   DrawerReciperFilterProps
->(({ dataCollapse }: DrawerReciperFilterProps, ref) => {
+>(({ dataCollapse, onFilter }: DrawerReciperFilterProps, ref) => {
   const [open, setOpen] = useState(false);
+  const setApplyChange = useSetAtom(applyChangesAtom);
 
   useImperativeHandle(ref, () => ({
     showDrawer() {
@@ -49,6 +53,8 @@ export const DrawerReciperFilter = forwardRef<
 
   const handleFilter = () => {
     setOpen(false);
+    setApplyChange(true);
+    onFilter?.();
   };
   return (
     <Drawer

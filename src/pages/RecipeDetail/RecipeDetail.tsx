@@ -26,7 +26,7 @@ export default function RecipeDetail() {
     if (queryParams?.recipe_id) {
       setDataDetail(
         dataProductDetail.find(
-          (item: ProductDetailItem) => item.id === Number(queryParams.recipe_id)
+          (item: ProductDetailItem) => item.id === queryParams.recipe_id
         )
       );
     }

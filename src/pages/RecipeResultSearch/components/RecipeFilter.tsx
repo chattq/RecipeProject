@@ -11,22 +11,33 @@ import {
   DrawerReciperFilter,
   DrawerReciperFilterRef,
 } from "./DrawerReciperFilter";
+import useQueryParams from "../../../packages/hooks/useQueryParams";
 
 export interface ListCheckBox {
   label: string;
   key: string;
 }
 
-export default function RecipeFilter() {
+interface RecipeFilterProps {
+  onFilter?: () => void;
+}
+
+export default function RecipeFilter({ onFilter }: RecipeFilterProps) {
   const position: PositionType[] = ["left", "right"];
   const navigate = useNavigate();
   const location = useLocation();
   const drawerReciperFilterRef = useRef<DrawerReciperFilterRef>(null);
+  const queryParamsHook = useQueryParams();
 
   const handleChange = (value: string) => {
     const queryParams = new URLSearchParams(location.search);
-    queryParams.set("arrange", value);
-    navigate(`/results?${queryParams.toString()}`);
+    if (value) {
+      queryParams.set("arrange", value);
+      navigate(`/results?${queryParams.toString()}`);
+    } else {
+      queryParams.delete("arrange");
+      navigate(`/results?${queryParams.toString()}`);
+    }
   };
 
   const OperationsSlot: Record<PositionType, React.ReactNode> = {
@@ -39,11 +50,11 @@ export default function RecipeFilter() {
       <div>
         <span className="mr-2">Sắp xếp:</span>
         <Select
-          defaultValue="view"
+          defaultValue={queryParamsHook.arrange || ""}
           style={{ width: 120 }}
           onChange={handleChange}
           options={[
-            { label: "Lượt xem", value: "view" },
+            { label: "---", value: "" },
             { label: "Yêu thích", value: "like" },
           ]}
         />
@@ -66,35 +77,43 @@ export default function RecipeFilter() {
   const listCheckBoxIngredient: ListCheckBox[] = [
     {
       label: "Dâu tây",
-      key: "menu",
+      key: "dautay",
     },
     {
       label: "Sả",
-      key: "type",
+      key: "sa",
     },
     {
       label: "Trân châu",
-      key: "ingredients",
+      key: "tranchau",
     },
     {
       label: "Đào",
-      key: "difficulty",
+      key: "dao",
     },
     {
       label: "Khế",
-      key: "season",
+      key: "khe",
     },
     {
       label: "Dọc mùng",
-      key: "cuisine",
+      key: "docmung",
     },
     {
       label: "Tôm",
-      key: "method",
+      key: "tom",
+    },
+    {
+      label: "Cá",
+      key: "ca",
     },
     {
       label: "Cà phê",
-      key: "method",
+      key: "caphe",
+    },
+    {
+      label: "Thạch",
+      key: "thach",
     },
   ];
   const listCheckBoxLevel: ListCheckBox[] = [
@@ -158,7 +177,8 @@ export default function RecipeFilter() {
   const handleChangeTab = (val: string) => {
     const query = searchParams.get("q") || ""; // Hoặc lấy giá trị khác từ URL
     if (query) {
-      navigate(`/results?q=${encodeURIComponent(query)}&tab=${val}`);
+      searchParams.set("tab", val);
+      navigate(`${location.pathname}?${searchParams.toString()}`);
     } else {
       navigate(`/results?tab=${val}`);
     }
@@ -188,7 +208,11 @@ export default function RecipeFilter() {
         <div onClick={showDrawerFilter} className="cursor-pointer">
           <CiFilter size={25} />
         </div>
-        <DrawerReciperFilter ref={drawerReciperFilterRef} dataCollapse={tabs} />
+        <DrawerReciperFilter
+          ref={drawerReciperFilterRef}
+          dataCollapse={tabs}
+          onFilter={onFilter}
+        />
       </div>
     </>
   );

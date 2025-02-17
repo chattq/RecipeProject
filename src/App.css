@@ -79,6 +79,22 @@ body {
     overflow-x: scroll;
     padding: 0 15px;
   }
+  /* Custom scrollbar for Webkit-based browsers (Chrome, Safari, Edge) */
+  .mobile_home_categories::-webkit-scrollbar {
+    width: 8px; /* Độ rộng thanh cuộn */
+    height: 8px; /* Độ cao thanh cuộn ngang */
+  }
+
+  .mobile_home_categories::-webkit-scrollbar-track {
+    background: transparent; /* Màu nền thanh cuộn (trong suốt nhẹ) */
+    border-radius: 10px;
+  }
+
+  .mobile_home_categories::-webkit-scrollbar-thumb {
+    background: transparent; /* Màu thanh cuộn (trong suốt hơn) */
+    border-radius: 10px;
+    border: 1px solid transparent; /* Hiệu ứng đường viền trong suốt */
+  }
   .mobile_home_contaier {
     padding-top: 25px;
   }

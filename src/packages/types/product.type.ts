@@ -1,10 +1,11 @@
 export interface ProductItem {
-  id: number;
+  id: number | string;
   name: string;
   description: string;
   image: string;
   cook_time: string;
   cook_level: string;
+  cook_level_code: string;
   cook_view: string;
   cook_like: string | number;
   recipe_by: string;
@@ -12,36 +13,36 @@ export interface ProductItem {
 }
 
 export interface productMainItem {
-  id: number;
+  id: number | string;
   data: any[];
   title: string;
 }
 export interface productMainPopularItem {
-  id: number;
+  id: number | string;
   data: any[];
 }
 
 //thành phần
 export interface Recipe_Ingredients {
-  ingredients_id: number;
+  ingredients_id: number | string;
   ingredient_name: string;
   ingredient_unit: string;
 }
 
 // Hướng dẫn thực hiện
 export interface Instructions_Images {
-  instruction_image_id: number;
+  instruction_image_id: number | string;
   instruction_image_image: string;
 }
 export interface Recipe_Instructions {
-  instruction_id: number;
+  instruction_id: number | string;
   instruction_description: string;
   instruction_image_list: Instructions_Images[];
 }
 ///========================
 
 export interface ProductDetailItem {
-  id: number;
+  id: number | string;
   image: string;
   recipe_name: string;
   recipe_by: string;
