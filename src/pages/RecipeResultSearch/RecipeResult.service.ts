@@ -16,7 +16,9 @@ export const filterRecipes = (
       : true;
 
     // Kiểm tra nếu level có giá trị và cook_level trong item nằm trong mảng level
-    const levelMatch = level.length ? level.includes(item.cook_level) : true;
+    const levelMatch = level.length
+      ? level.includes(item.cook_level_code)
+      : true;
 
     // Kiểm tra nếu ingredients có giá trị và ít nhất một ingredient trong recipe_ingredients trùng với giá trị trong mảng ingredients
     const ingredientsMatch = ingredients.length

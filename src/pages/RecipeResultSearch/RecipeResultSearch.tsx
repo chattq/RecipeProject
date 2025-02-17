@@ -37,6 +37,7 @@ export default function RecipeResultSearch() {
     );
     const queryIngredient = queryParams?.ingredient?.split(",") ?? [];
     const queryLevel = queryParams?.level?.split(",") ?? [];
+    console.log(40, mergedData);
     setDataResultSearch(
       filterRecipes(
         mergedData,
